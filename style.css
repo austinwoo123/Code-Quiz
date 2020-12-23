@@ -40,6 +40,8 @@ button {
    color: black;
    background-color: red;
     font-size: 24px;
+    padding:12px 24px;
+    border: none;
 }
 
 
