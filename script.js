@@ -39,8 +39,10 @@ function quizStart() {
         }
 
     }, 1000);
+
     next()
 }
+console.log(quizStart)
 
 function gameFinish() {
     clearInterval(timer);
@@ -48,7 +50,7 @@ function gameFinish() {
     <h2>Game Over...</h2>
     <h3>You're score was ` + score + ` /100 </h3> 
     <input type= "text" id="name" placeholder= "Name">
-    <button onclick= "setScore()"> Set Score!</button>`;
+    <button onclick="save()"> Save!</button>`;
 
     document.getElementById("quizArea").innerHTML = quizContent;
 
@@ -67,8 +69,20 @@ function incorrect() {
 function save() {
     localStorage.setItem("highscore", score);
     localStorage.setItem("highscoreName", document.getElementById('name').value);
-    getScore();
+    recordScore();
 }
+
+function recordScore() {
+    var quizArea = `
+    <h2>` + localStorage.getItem("highscoreName") + `'s highscore is: </h2>
+    <h1>` + localStorage.getItem("highscore") + ` </h1><br>
+    
+    <button onClick="clearscore()"> Clear Score</button><button onclick="resetGame()"> Try Again!</button>
+    `;
+
+    document.getElementById("quizArea").innerHTML = quizContent;
+}
+
 
 
 
