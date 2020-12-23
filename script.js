@@ -70,6 +70,7 @@ function save() {
     getScore();
 }
 
+
 function resetGame() {
     clearInterval(timer);
     score = 0;
@@ -78,7 +79,15 @@ function resetGame() {
     timer = null;
     document.getElementById("timeRemain").innerHTML = timeRemain;
 
-    var quiz
+    var quizContent = `
+    <h1>
+        Fun Quiz!
+    </h1>
+    <h3>
+        Click Start to Play!
+    </h3>
+    <button onclick= "start()">Start!</button>`;
+    document.getElementById("quizArea").innerHTML = quizContent
 }
 
 function next() {

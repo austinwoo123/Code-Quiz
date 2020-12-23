@@ -1,3 +1,4 @@
+/*navbar styling starts here*/
 .left{
     float: left;
 }
@@ -15,7 +16,9 @@
     padding:10px
     
 }
+/*navbar styling ends here*/
 
+/*Quiz body styling starts here*/
 body{
     background-color: lightblue
 }
@@ -29,7 +32,9 @@ a{
     text-decoration: none;
     color: black
 }
+/*Quiz body styling ends here*/
 
+/*button styling*/
 button {
    margin: 5px; 
    color: black;
