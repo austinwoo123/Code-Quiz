@@ -3,7 +3,7 @@ var currentQuestion = -1;
 var timeRemain = 0;
 var timer;
 
-var questions = [{
+var funQuestions = [{
     prompt: "What is the most common natural object to be mistaken for a UFO?",
     options: ["airplane", "bird", "venus", "moon"],
     answer: "Venus"
@@ -40,4 +40,52 @@ function quizStart() {
 
     }, 1000);
     next()
+}
+
+function gameFinish() {
+    clearInterval(timer);
+    var quizResults = `
+    <h2>Game Over...</h2>
+    <h3>You're score was ` + score + ` /100 </h3> 
+    <input type= "text" id="name" placeholder= "Name">
+    <button onclick= "setScore()"> Set Score!</button>`;
+
+    document.getElementById("quizArea").innerHTML = quizResults;
+
+}
+
+function correct() {
+    score += 20;
+    next();
+}
+
+function incorrect() {
+    timeLeft -= 10;
+    next();
+}
+
+function save() {
+    localStorage.setItem("highscore", score);
+    localStorage.setItem("highscoreName", document.getElementById('name').value);
+    getScore();
+}
+
+function resetGame() {
+    clearInterval(timer);
+    score = 0;
+    currentQuestion = -1;
+    timeRemain = 0;
+    timer = null;
+    document.getElementById("timeRemain").innerHTML = timeRemain;
+
+    var quiz
+}
+
+function next() {
+    currentQuestion++;
+    if (currentQuestion > funQuestions.length - 1) {
+        endGame();
+        return;
+    }
+    var quiz
 }
