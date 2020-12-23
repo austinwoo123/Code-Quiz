@@ -44,13 +44,13 @@ function quizStart() {
 
 function gameFinish() {
     clearInterval(timer);
-    var quizResults = `
+    var quizContent = `
     <h2>Game Over...</h2>
     <h3>You're score was ` + score + ` /100 </h3> 
     <input type= "text" id="name" placeholder= "Name">
     <button onclick= "setScore()"> Set Score!</button>`;
 
-    document.getElementById("quizArea").innerHTML = quizResults;
+    document.getElementById("quizArea").innerHTML = quizContent;
 
 }
 
@@ -69,6 +69,8 @@ function save() {
     localStorage.setItem("highscoreName", document.getElementById('name').value);
     getScore();
 }
+
+
 
 
 function resetGame() {
@@ -96,5 +98,18 @@ function next() {
         endGame();
         return;
     }
-    var quiz
+    var quizContent = "<h2>" + funQuestions[currentQuestion].title + "</h2>"
+
+    for (var buttonCycle = 0; buttonLoop < funQuestions[currentQuestion].choices.length; buttonCycle++) {
+        var buttonCode = "<button on click =\"[Answer]\">[Option]</button>";
+        buttonCode = buttonCode.replace("[Choice]", funQuestions[currentQuestion].choices[buttonCycle]);
+        if (funQuestions[currentQuestion].choices[buttonCycle] == funQuestions[currentQuestion].answer) {
+            buttonCode = buttonCode.replace("[Answer]", "Right");
+        } else {
+            buttonCode = buttonCode.replace("[Answer]", "Wrong");
+        }
+        quizContent += buttonCode
+    }
+    document.getElementById("quizArea").innerHTML = quizContent;
+
 }
