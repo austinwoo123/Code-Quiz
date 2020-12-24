@@ -29,7 +29,7 @@ var funQuestions = [{
 starter.addEventListener("click", quizStart);
 function quizStart() {
 
-    timeRemain = 100;
+    timeRemain = 10;
     document.getElementById("timeRemaining").innerHTML = timeRemain;
     timer = setInterval(function () {
         timeRemain--;
@@ -45,18 +45,25 @@ function quizStart() {
     next()
 }
 // console.log(quizStart)
-
-
+var option1 = document.getElementById("option1");
+var option2 = document.getElementById("option2");
+var option3 = document.getElementById("option3");
+var option4 = document.getElementById("option4");
+var option5 = document.getElementById("option5");
+var question = document.getElementById("quizArea");
 function next() {
+    question.innerHTML = funQuestions[0].prompt
+    option1.innerHTML = funQuestions[0].options
 
+    // console.log(funQuestions[0].prompt)
 
 
 
 }
-
+var quizContent
 function gameFinish() {
     clearInterval(timer);
-    var quizContent = `
+    quizContent = `
     <h2>Game Over...</h2>
     <h3>You're score was ` + score + ` /100 </h3> 
     <input type= "text" id="name" placeholder= "Name">
