@@ -2,7 +2,7 @@ var score = 0;
 var currentQuestion = -1;
 var timeRemain = 0;
 var timer;
-
+var starter = document.querySelector("#starter");
 var funQuestions = [{
     prompt: "What is the most common natural object to be mistaken for a UFO?",
     options: ["airplane", "bird", "venus", "moon"],
@@ -26,12 +26,14 @@ var funQuestions = [{
 }
 ]
 
+starter.addEventListener("click", quizStart);
 function quizStart() {
+
     timeRemain = 100;
-    document.getElementById("timeRemain").innerHTML = timeRemain;
+    document.getElementById("timeRemaining").innerHTML = timeRemain;
     timer = setInterval(function () {
         timeRemain--;
-        document.getElementById("timeRemain").innerHTML = timeRemain;
+        document.getElementById("timeRemaining").innerHTML = timeRemain;
 
         if (timeRemain <= 0) {
             clearInterval(timer);
@@ -42,7 +44,15 @@ function quizStart() {
 
     next()
 }
-console.log(quizStart)
+// console.log(quizStart)
+
+
+function next() {
+
+
+
+
+}
 
 function gameFinish() {
     clearInterval(timer);
@@ -62,7 +72,7 @@ function correct() {
 }
 
 function incorrect() {
-    timeLeft -= 10;
+    score -= 10;
     next();
 }
 
@@ -77,14 +87,21 @@ function recordScore() {
     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is: </h2>
     <h1>` + localStorage.getItem("highscore") + ` </h1><br>
     
-    <button onClick="clearscore()"> Clear Score</button><button onclick="resetGame()"> Try Again!</button>
+    <button onClick="clearScore()"> Clear Score</button><button onclick="resetGame()"> Try Again!</button>
     `;
 
     document.getElementById("quizArea").innerHTML = quizContent;
 }
 
+function clearScore() {
 
 
+    localStorage.setItem("highscore", "");
+    localStorage.setItem("highscoreName", "");
+
+    resetGame();
+
+}
 
 
 function resetGame() {
@@ -99,31 +116,40 @@ function resetGame() {
     <h1>
         Fun Quiz!
     </h1>
-    <h3>
+    <h2>
         Click Start to Play!
-    </h3>
+    </h2>
     <button onclick= "start()">Start!</button>`;
     document.getElementById("quizArea").innerHTML = quizContent
 }
 
-function next() {
-    currentQuestion++;
-    if (currentQuestion > funQuestions.length - 1) {
-        endGame();
-        return;
-    }
-    var quizContent = "<h2>" + funQuestions[currentQuestion].title + "</h2>"
 
-    for (var buttonCycle = 0; buttonLoop < funQuestions[currentQuestion].choices.length; buttonCycle++) {
-        var buttonCode = "<button on click =\"[Answer]\">[Option]</button>";
-        buttonCode = buttonCode.replace("[Choice]", funQuestions[currentQuestion].choices[buttonCycle]);
-        if (funQuestions[currentQuestion].choices[buttonCycle] == funQuestions[currentQuestion].answer) {
-            buttonCode = buttonCode.replace("[Answer]", "Right");
-        } else {
-            buttonCode = buttonCode.replace("[Answer]", "Wrong");
-        }
-        quizContent += buttonCode
-    }
-    document.getElementById("quizArea").innerHTML = quizContent;
 
-}
+
+
+
+
+
+
+
+
+    // currentQuestion++;
+    // if (currentQuestion > funQuestions.length - 1) {
+    //     endGame();
+    //     return;
+    // }
+    // var quizContent = "<h2>" + funQuestions[currentQuestion].title + "</h2>"
+
+    // for (var buttonCycle = 0; buttonLoop < funQuestions[currentQuestion].choices.length; buttonCycle++) {
+    //     var buttonCode = "<button on click =\"[Answer]\">[Option]</button>";
+    //     buttonCode = buttonCode.replace("[Choice]", funQuestions[currentQuestion].choices[buttonCycle]);
+    //     if (funQuestions[currentQuestion].choices[buttonCycle] == funQuestions[currentQuestion].answer) {
+    //         buttonCode = buttonCode.replace("[Answer]", "Right");
+    //     } else {
+    //         buttonCode = buttonCode.replace("[Answer]", "Wrong");
+    //     }
+    //     quizContent += buttonCode
+    // }
+    // document.getElementById("quizArea").innerHTML = quizContent;
+
+
